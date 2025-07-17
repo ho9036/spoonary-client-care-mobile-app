@@ -2,13 +2,38 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spoonary_client_care_service/app_theme.dart';
+import 'package:go_router/go_router.dart';
 
-class IntroScreen extends ConsumerWidget {
+import '../app_theme.dart';
+
+class IntroScreen extends ConsumerStatefulWidget {
   const IntroScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<IntroScreen> createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends ConsumerState<IntroScreen> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer(const Duration(seconds: 5), () {
+      if (mounted) {
+        context.go('/add-devices');
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return Scaffold(
       backgroundColor: colors.surface,
@@ -77,16 +102,17 @@ class _LoadingDotsState extends ConsumerState<LoadingDots> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(3, (index) {
-          final color = index == _activeIndex
-              ? colors.primary
-              : colors.secondary;
+          final color = index == _activeIndex ? colors.primary : colors.secondary;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               width: 10,
               height: 10,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: color,
+              ),
             ),
           );
         }),
