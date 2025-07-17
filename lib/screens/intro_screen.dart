@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spoonary_client_care_service/app_theme.dart';
 
 class IntroScreen extends ConsumerWidget {
   const IntroScreen({super.key});
@@ -10,16 +11,29 @@ class IntroScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: colors.background,
+      backgroundColor: colors.surface,
       body: Column(
         children: [
           Expanded(
             child: Center(
-              child: Image.asset(
-                'assets/img/large_logo.png',
-                fit: BoxFit.contain,
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 0.3,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/img/large_logo.png',
+                    fit: BoxFit.contain,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                  ),
+                  const SizedBox(height: 16.0),
+                  Text(
+                    '모두를 위한 로봇 스터디',
+                    style: TextStyle(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.text,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -63,17 +77,16 @@ class _LoadingDotsState extends ConsumerState<LoadingDots> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(3, (index) {
-          final color = index == _activeIndex ? colors.primary : colors.secondary;
+          final color = index == _activeIndex
+              ? colors.primary
+              : colors.secondary;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               width: 10,
               height: 10,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: color,
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: color),
             ),
           );
         }),

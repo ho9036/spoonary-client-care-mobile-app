@@ -15,7 +15,7 @@ class AppTheme {
       fontFamily: 'Pretendard',
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,
-        background: AppColors.background,
+        surface: AppColors.background,
         primary: AppColors.primary,
         secondary: AppColors.base,
         brightness: Brightness.dark,
