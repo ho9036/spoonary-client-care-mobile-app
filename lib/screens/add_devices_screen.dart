@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../app_theme.dart';
+
 class AddDevicesScreen extends ConsumerWidget {
   const AddDevicesScreen({super.key});
 
@@ -8,18 +10,19 @@ class AddDevicesScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: colors.background,
+      backgroundColor: colors.surface,
       appBar: AppBar(
-        backgroundColor: colors.background,
+        backgroundColor: colors.surface,
+        centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: colors.onBackground),
+          icon: Icon(Icons.arrow_back, color: AppColors.text),
           onPressed: () {
             Navigator.of(context).maybePop();
           },
         ),
         title: Text(
           'Add Devices',
-          style: TextStyle(color: colors.onBackground),
+          style: TextStyle(color: AppColors.text),
         ),
         elevation: 0,
       ),
@@ -33,7 +36,7 @@ class AddDevicesScreen extends ConsumerWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Image.asset(
-                    'assets/robotic_hand.png',
+                    'assets/img/robotic_hand.png',
                     fit: BoxFit.contain,
                     width: MediaQuery.of(context).size.width * 0.6,
                   ),
@@ -41,15 +44,21 @@ class AddDevicesScreen extends ConsumerWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
               child: Text(
                 '로봇의 전원을 켜고 근처에 있는지 확인하세요.',
-                style: TextStyle(color: colors.onBackground, fontSize: 16),
+                style: TextStyle(color: AppColors.text, fontSize: 16),
                 textAlign: TextAlign.center,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -61,12 +70,15 @@ class AddDevicesScreen extends ConsumerWidget {
                 ),
                 child: Text(
                   'QR코드 스캔하기',
-                  style: TextStyle(color: colors.onPrimary, fontSize: 16),
+                  style: TextStyle(color: AppColors.text, fontSize: 16),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 4.0,
+              ),
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -78,12 +90,15 @@ class AddDevicesScreen extends ConsumerWidget {
                 ),
                 child: Text(
                   '블루투스 추가하기',
-                  style: TextStyle(color: colors.onSecondary, fontSize: 16),
+                  style: TextStyle(color: AppColors.text, fontSize: 16),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 4.0,
+              ),
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -95,7 +110,7 @@ class AddDevicesScreen extends ConsumerWidget {
                 ),
                 child: Text(
                   '수동으로 추가하기',
-                  style: TextStyle(color: colors.onSecondary, fontSize: 16),
+                  style: TextStyle(color: AppColors.text, fontSize: 16),
                 ),
               ),
             ),
